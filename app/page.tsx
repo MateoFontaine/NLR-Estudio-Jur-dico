@@ -319,61 +319,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- FOOTER CON LOGO OFICIAL --- */}
+    {/* --- FOOTER CON LOGO OFICIAL Y CRÉDITOS ABAJO --- */}
       <footer className="bg-slate-950 text-slate-400 py-16 px-4 text-center md:text-left">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 text-sm">
+        <div className="max-w-6xl mx-auto">
           
-          {/* COLUMNA 1: LOGO Y DESCRIPCIÓN */}
-          <div className="flex flex-col items-center md:items-start space-y-4">
-            {/* Logo recreado en versión oscura (blanco y celeste) */}
-            <a href="#inicio" onClick={(e) => scrollToSection(e, 'inicio')} className="flex items-center gap-3 select-none cursor-pointer group">
-              <div className="text-white">
-                <span className="text-3xl font-bold tracking-tighter leading-none">NLR</span>
+          {/* GRILLA DE 3 COLUMNAS SUPERIOR */}
+          <div className="grid md:grid-cols-3 gap-12 text-sm">
+            
+            {/* COLUMNA 1: LOGO Y DESCRIPCIÓN */}
+            <div className="flex flex-col items-center md:items-start space-y-4">
+              <a href="#inicio" onClick={(e) => scrollToSection(e, 'inicio')} className="flex items-center gap-3 select-none cursor-pointer group">
+                <div className="text-white">
+                  <span className="text-3xl font-bold tracking-tighter leading-none">NLR</span>
+                </div>
+                <div className="h-8 w-px bg-slate-700"></div>
+                <div className="flex flex-col text-left">
+                  <span className="text-sm font-bold tracking-[0.1em] text-white uppercase leading-tight">
+                    Estudio Jurídico
+                  </span>
+                  <span className="text-xs text-cyan-400 font-medium leading-tight mt-0.5">
+                    Tu tranquilidad. Nuestro compromiso.
+                  </span>
+                </div>
+              </a>
+              <p className="leading-relaxed max-w-xs mx-auto md:mx-0">Defensa legal integral con estrategia, compromiso y resultados. Sede en Buenos Aires, Argentina.</p>
+            </div>
+
+            {/* COLUMNA 2: CONTACTO */}
+            <div className="flex flex-col items-center md:items-start">
+              <h4 className="text-white font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+                <MessageCircle size={16} className="text-cyan-400" /> Contacto
+              </h4>
+              <div className="space-y-3">
+                <p className="flex items-center justify-center md:justify-start gap-2">
+                  <MapPin size={16} className="text-slate-600 shrink-0" /> 
+                  <span>Buenos Aires, Argentina</span>
+                </p>
+                <p className="flex items-center justify-center md:justify-start gap-2">
+                  <Phone size={16} className="text-slate-600 shrink-0" /> 
+                  <span>Tel: 11 1234-5678</span>
+                </p>
+                <p className="flex items-center justify-center md:justify-start gap-2">
+                  <Mail size={16} className="text-slate-600 shrink-0" /> 
+                  <span>Email: contacto@estudionlr.com.ar</span>
+                </p>
               </div>
-              <div className="h-8 w-px bg-slate-700"></div>
-              <div className="flex flex-col text-left">
-                <span className="text-sm font-bold tracking-[0.1em] text-white uppercase leading-tight">
-                  Estudio Jurídico
-                </span>
-                {/* Frase en color celeste (cyan-400) */}
-                <span className="text-xs text-cyan-400 font-medium leading-tight mt-0.5">
-                  Tu tranquilidad. Nuestro compromiso.
-                </span>
-              </div>
-            </a>
-            <p className="leading-relaxed max-w-xs mx-auto md:mx-0">Defensa legal integral con estrategia, compromiso y resultados. Sede en Buenos Aires, Argentina.</p>
+            </div>
+
+            {/* COLUMNA 3: HORARIOS (Sin los créditos, solo horarios) */}
+            <div className="flex flex-col items-center md:items-start">
+              <h4 className="text-white font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+                <CheckCircle2 size={16} className="text-cyan-400" /> Atención
+              </h4>
+              <p className="mb-4">Lunes a Viernes: 09:00 - 18:00 hs</p>
+              <p className="text-slate-500 text-xs">Atención con turno previo.</p>
+            </div>
+
           </div>
 
-          {/* COLUMNA 2: CONTACTO */}
-          <div className="flex flex-col items-center md:items-start">
-            <h4 className="text-white font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
-              <MessageCircle size={16} className="text-cyan-400" /> Contacto
-            </h4>
-            <div className="space-y-3">
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <MapPin size={16} className="text-slate-600 shrink-0" /> 
-                <span>Buenos Aires, Argentina</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Phone size={16} className="text-slate-600 shrink-0" /> 
-                <span>Tel: 11 1234-5678</span>
-              </p>
-              <p className="flex items-center justify-center md:justify-start gap-2">
-                <Mail size={16} className="text-slate-600 shrink-0" /> 
-                <span>Email: contacto@estudionlr.com.ar</span>
-              </p>
-            </div>
-          </div>
-
-          {/* COLUMNA 3: HORARIOS */}
-          <div className="flex flex-col items-center md:items-start">
-            <h4 className="text-white font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
-              <CheckCircle2 size={16} className="text-cyan-400" /> Atención
-            </h4>
-            <p className="mb-4">Lunes a Viernes: 09:00 - 18:00 hs</p>
-            <div className="pt-4 border-t border-slate-800 w-full md:w-auto">
-              <p className="text-xs text-slate-600">© 2025 NLR Estudio Jurídico. Todos los derechos reservados.</p>
-            </div>
+          {/* --- BARRA INFERIOR DE CRÉDITOS (SEPARADA) --- */}
+          <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col items-center justify-center text-xs text-slate-600 space-y-2">
+            <p>© 2025 NLR Estudio Jurídico. Todos los derechos reservados.</p>
+            <p>
+              Hecho por <a href="https://www.instagram.com/codela.estudio/" target="_blank" rel="noreferrer" className="text-blue-500 underline hover:text-blue-400 transition-colors font-medium">Codela</a>
+            </p>
           </div>
 
         </div>
