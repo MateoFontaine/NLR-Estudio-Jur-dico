@@ -101,13 +101,19 @@ export default function Home() {
     { name: 'Nuestro Equipo', id: 'equipo' }
   ];
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement> | null, id: string) => {
+    if (e) e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
     }
+  };
+
+  // NUEVA FUNCIÓN: Selecciona la rama y sube al formulario
+  const handleSeleccionarRama = (titulo: string) => {
+    setFormData(prev => ({ ...prev, rama: titulo }));
+    scrollToSection(null, 'inicio');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -243,24 +249,24 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-[10px] font-bold text-slate-600 uppercase mb-1">Nombre Completo</label>
-                      <input type="text" name="nombre" required className="w-full px-3 py-2 bg-slate-50 border border-slate-300 focus:border-blue-900 focus:ring-0 outline-none transition text-sm rounded-sm placeholder:text-slate-400" onChange={handleChange} />
+                      <input type="text" name="nombre" value={formData.nombre} required className="w-full px-3 py-2 bg-slate-50 border border-slate-300 focus:border-blue-900 focus:ring-0 outline-none transition text-sm rounded-sm placeholder:text-slate-400" onChange={handleChange} />
                     </div>
                     <div>
                       <label className="block text-[10px] font-bold text-slate-600 uppercase mb-1">Teléfono</label>
-                      <input type="tel" name="telefono" required className="w-full px-3 py-2 bg-slate-50 border border-slate-300 focus:border-blue-900 focus:ring-0 outline-none transition text-sm rounded-sm" onChange={handleChange} />
+                      <input type="tel" name="telefono" value={formData.telefono} required className="w-full px-3 py-2 bg-slate-50 border border-slate-300 focus:border-blue-900 focus:ring-0 outline-none transition text-sm rounded-sm" onChange={handleChange} />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-[10px] font-bold text-slate-600 uppercase mb-1">Área Legal</label>
-                    <select name="rama" className="w-full px-3 py-2 bg-slate-50 border border-slate-300 focus:border-blue-900 focus:ring-0 outline-none transition text-sm text-slate-700 rounded-sm" onChange={handleChange}>
+                    <select name="rama" value={formData.rama} className="w-full px-3 py-2 bg-slate-50 border border-slate-300 focus:border-blue-900 focus:ring-0 outline-none transition text-sm text-slate-700 rounded-sm" onChange={handleChange}>
                       {ramasData.map((r) => <option key={r.title} value={r.title}>{r.title}</option>)}
                     </select>
                   </div>
 
                   <div>
                     <label className="block text-[10px] font-bold text-slate-600 uppercase mb-1">Detalle del caso</label>
-                    <textarea name="consulta" rows={3} required className="w-full px-3 py-2 bg-slate-50 border border-slate-300 focus:border-blue-900 focus:ring-0 outline-none transition resize-none text-sm rounded-sm" onChange={handleChange}></textarea>
+                    <textarea name="consulta" value={formData.consulta} rows={3} required className="w-full px-3 py-2 bg-slate-50 border border-slate-300 focus:border-blue-900 focus:ring-0 outline-none transition resize-none text-sm rounded-sm" onChange={handleChange}></textarea>
                   </div>
 
                   <div className="pt-1">
@@ -311,10 +317,7 @@ export default function Home() {
                   </p>
                   <div className="pt-4 border-t border-slate-200 mt-auto">
                     <button 
-                      onClick={() => {
-                        const mensaje = `Hola, quisiera realizar una consulta sobre *${rama.title}*.`;
-                        window.open(`https://wa.me/5491112345678?text=${mensaje}`, '_blank');
-                      }} 
+                      onClick={() => handleSeleccionarRama(rama.title)} 
                       className="text-[10px] font-black text-blue-900 uppercase tracking-widest hover:text-blue-700 flex items-center gap-2 group/btn"
                     >
                       Solicitar Asesoramiento 
