@@ -51,14 +51,42 @@ export default function Home() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const ramasData = [
-    { title: "Derecho Laboral", icon: <Briefcase size={24} />, desc: "Despidos, indemnizaciones y accidentes ART." },
-    { title: "Derecho Penal", icon: <Scale size={24} />, desc: "Defensa penal y asistencia en procesos judiciales." },
-    { title: "Civil y Comercial", icon: <FileText size={24} />, desc: "Contratos, sucesiones y ejecuciones." },
-    { title: "Daños y Perjuicios", icon: <Gavel size={24} />, desc: "Reclamos por accidentes de tránsito y mala praxis." },
-    { title: "Defensa al Consumidor", icon: <Shield size={24} />, desc: "Protección ante abusos de empresas." },
-    { title: "Derecho de Familia", icon: <Users size={24} />, desc: "Divorcios, alimentos y régimen de visitas." },
-    { title: "Derecho Informático", icon: <Monitor size={24} />, desc: "Estafas digitales y protección de datos." },
+ const ramasData = [
+    { 
+      title: "Derecho Laboral", 
+      icon: <Briefcase size={24} />, 
+      desc: "Despidos, falta o mala registración, acoso laboral. Ayudamos a calcular indemnizaciones, revisamos recibos y representamos en negociaciones, telegramas y juicios para lograr lo que te corresponde." 
+    },
+    { 
+      title: "Derecho Penal", 
+      icon: <Scale size={24} />, 
+      desc: "Defensa penal y asistencia para víctimas y acusados en todas las etapas: denuncias, audiencias y juicios. Intervención urgente 24 hs con un enfoque técnico y humano." 
+    },
+    { 
+      title: "Civil y Comercial", 
+      icon: <FileText size={24} />, 
+      desc: "Contratos, cobros de deudas, desalojos y ejecuciones. Asesoramos en redacción y resolución de conflictos contractuales, incumplimientos y disputas entre particulares o empresas." 
+    },
+    { 
+      title: "Sucesiones", 
+      icon: <Gavel size={24} />, 
+      desc: "Trámites sucesorios simples y complejos. Acompañamos desde la declaratoria de herederos e inventario hasta la partición de bienes con claridad administrativa y jurídica." 
+    },
+    { 
+      title: "Defensa del Consumidor", 
+      icon: <Shield size={24} />, 
+      desc: "Reclamos ante bancos, financieras y empresas por cargos indebidos, productos defectuosos o mala atención. Exigimos reparaciones, reintegros y cumplimiento de garantías." 
+    },
+    { 
+      title: "Derecho Informático", 
+      icon: <Monitor size={24} />, 
+      desc: "Expertos en estafas digitales, phishing, hackeos y fraudes bancarios/fintech. Protección de datos personales, ciberseguridad y cumplimiento normativo para empresas." 
+    },
+    { 
+      title: "Marcas y Patentes", 
+      icon: <Shield size={24} />, 
+      desc: "Registro de marcas y logos, derechos de autor, software y patentes. Brindamos una estrategia integral para proteger tu propiedad intelectual y evitar copias o conflictos." 
+    },
   ];
 
   const teamData = [
@@ -265,20 +293,33 @@ export default function Home() {
           <FadeIn>
             <div className="text-center mb-16">
               <span className="text-blue-900 font-bold tracking-widest text-xs uppercase">Nuestros Servicios</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Áreas de Práctica</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Especialidades Jurídicas</h2>
               <div className="w-16 h-1 bg-blue-900 mx-auto mt-4"></div>
             </div>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ramasData.map((rama, index) => (
-              <FadeIn key={index} delay={index * 100}>
-                <div className="p-6 border border-slate-100 rounded-sm hover:shadow-lg transition-shadow bg-slate-50 group h-full">
-                  <div className="text-blue-900 mb-4 group-hover:scale-110 transition-transform duration-300">{rama.icon}</div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{rama.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{rama.desc}</p>
-                  <div className="mt-4 pt-4 border-t border-slate-200">
-                    <button onClick={() => window.open('https://wa.me/5491112345678', '_blank')} className="text-xs font-bold text-blue-900 uppercase tracking-wide hover:underline">Consultar</button>
+              <FadeIn key={index} delay={index * 50}>
+                <div className="p-8 border border-slate-100 rounded-sm hover:shadow-xl transition-all duration-300 bg-slate-50 group h-full flex flex-col border-b-4 hover:border-b-blue-900">
+                  <div className="text-blue-900 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    {rama.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">{rama.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow">
+                    {rama.desc}
+                  </p>
+                  <div className="pt-4 border-t border-slate-200 mt-auto">
+                    <button 
+                      onClick={() => {
+                        const mensaje = `Hola, quisiera realizar una consulta sobre *${rama.title}*.`;
+                        window.open(`https://wa.me/5491112345678?text=${mensaje}`, '_blank');
+                      }} 
+                      className="text-[10px] font-black text-blue-900 uppercase tracking-widest hover:text-blue-700 flex items-center gap-2 group/btn"
+                    >
+                      Solicitar Asesoramiento 
+                      <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+                    </button>
                   </div>
                 </div>
               </FadeIn>
@@ -353,7 +394,7 @@ export default function Home() {
               <div className="space-y-3">
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <MapPin size={16} className="text-slate-600 shrink-0" /> 
-                  <span>Buenos Aires, Argentina</span>
+                  <span>CABA, Argentina</span>
                 </p>
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <Phone size={16} className="text-slate-600 shrink-0" /> 
@@ -371,7 +412,7 @@ export default function Home() {
               <h4 className="text-white font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-cyan-400" /> Atención
               </h4>
-              <p className="mb-4">Lunes a Viernes: 09:00 - 18:00 hs</p>
+              <p className="mb-4">Lunes a Viernes: 8:00 a 20.00hs</p>
               <p className="text-slate-500 text-xs">Atención con turno previo.</p>
             </div>
 
