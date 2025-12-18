@@ -397,7 +397,7 @@ export default function Home() {
               <div className="space-y-3">
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <MapPin size={16} className="text-slate-600 shrink-0" /> 
-                  <span>Billinghurst 970</span>
+                  <span>Billinghurst 970 CABA</span>
                 </p>
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <Phone size={16} className="text-slate-600 shrink-0" /> 
