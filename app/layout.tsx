@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: 'NLR Estudio Jurídico',
     images: [
       {
-        url: '/Logo.png', // Se usará esta imagen al compartir el link
+        url: '/icon.svg', // Se usará esta imagen al compartir el link
         width: 800,
         height: 600,
         alt: 'NLR Estudio Jurídico Logo',
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
 
   // Iconos
   icons: {
-    icon: '/Logo.png',
-    apple: '/Logo.png', // Para cuando guardan el sitio en el inicio de un iPhone
+    icon: '/icon.svg',
+    apple: '/icon.svg', // Para cuando guardan el sitio en el inicio de un iPhone
   },
 
   // Robots le dice a Google que indexe todo el sitio
