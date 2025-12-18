@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: 'NLR Estudio Jurídico | Abogados en Buenos Aires',
   
   // Descripción con palabras clave (Ideal entre 150-160 caracteres)
-  description: 'Defensa legal con integridad y resultados. Especialistas en Derecho Laboral, Penal, Civil, Sucesiones y Derecho Informático en CABA y GBA.',
+  description: 'Tu consulta legal en manos responsables. Especialistas en Derecho Laboral, Penal, Civil, Sucesiones y Derecho Informático en CABA y GBA.',
   
   // Palabras clave para buscadores
   keywords: ['Abogados Buenos Aires', 'Derecho Laboral', 'Despidos', 'Derecho Penal', 'Sucesiones Argentina', 'Defensa del Consumidor', 'Estafas Virtuales'],
