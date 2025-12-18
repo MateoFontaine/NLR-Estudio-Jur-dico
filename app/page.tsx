@@ -202,9 +202,9 @@ export default function Home() {
           <div className="lg:col-span-7 space-y-5 text-center lg:text-left pr-0">
             <FadeIn delay={100}>
               <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight">
-                Defensa legal con <br />
+                Tu consulta legal<br />
                 <span className="text-blue-950 relative">
-                  integridad y resultados.
+                  En manos responsables
                   <span className="absolute bottom-1 left-0 w-full h-1 bg-blue-200/50 -z-10"></span>
                 </span>
               </h1>
@@ -232,7 +232,7 @@ export default function Home() {
             <FadeIn delay={700}>
               <div className="hidden lg:flex pt-4 items-center gap-2 text-slate-500 text-sm">
                  <Phone size={16} /> 
-                 <span className="font-semibold">Atención telefónica: 09:00 a 18:00 hs</span>
+                 <span className="font-semibold">Atención telefónica: 8:00 a 20.00 hs</span>
               </div>
             </FadeIn>
           </div>
