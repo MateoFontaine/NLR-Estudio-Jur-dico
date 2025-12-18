@@ -397,7 +397,7 @@ export default function Home() {
               <div className="space-y-3">
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <MapPin size={16} className="text-slate-600 shrink-0" /> 
-                  <span>CABA, Argentina</span>
+                  <span>Billinghurst 970</span>
                 </p>
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <Phone size={16} className="text-slate-600 shrink-0" /> 
@@ -423,7 +423,7 @@ export default function Home() {
 
           {/* --- BARRA INFERIOR DE CRÉDITOS (SEPARADA) --- */}
           <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col items-center justify-center text-xs text-slate-600 space-y-2">
-            <p>© 2025 NLR Estudio Jurídico. Todos los derechos reservados.</p>
+            <p>© 2026 NLR Estudio Jurídico. Todos los derechos reservados.</p>
             <p>
               Hecho por <a href="https://www.instagram.com/codela.estudio/" target="_blank" rel="noreferrer" className="text-blue-500 underline hover:text-blue-400 transition-colors font-medium">Codela</a>
             </p>
