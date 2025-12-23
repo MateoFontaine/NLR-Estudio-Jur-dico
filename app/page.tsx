@@ -51,7 +51,7 @@ export default function Home() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
- const ramasData = [
+  const ramasData = [
     { 
       title: "Derecho Laboral", 
       icon: <Briefcase size={24} />, 
@@ -90,9 +90,26 @@ export default function Home() {
   ];
 
   const teamData = [
-    { name: "Luciano Novelli", role: "Abogado", details: ["Universidad Argentina de la Empresa (UADE)", "Matriculado en CPACF"] },
-    { name: "Constantino Lubrano", role: "Abogado", details: ["Universidad Argentina de la Empresa (UADE)", "Matriculado en CPACF"] },
-    { name: "Javier Roldán", role: "Paralegal", details: ["Apoyo administrativo y gestión de expedientes."] }
+    { 
+      name: "Luciano Novelli", 
+      role: "Abogado", 
+      image: "/lulo.png", 
+      details: ["Universidad Argentina de la Empresa (UADE)", "Matriculado en CPACF"] 
+    },
+    { 
+      name: "Constantino Lubrano", 
+      role: "Abogado", 
+      image: "/conty.png",
+      position: 'center 20%', 
+      details: ["Universidad Argentina de la Empresa (UADE)", "Matriculado en CPACF"] 
+    },
+    { 
+      name: "Javier Roldán", 
+      role: "Paralegal", 
+      image: "/javi.png",
+      position: '40% center', 
+      details: ["Apoyo administrativo y gestión de expedientes."] 
+    }
   ];
 
   const navLinks = [
@@ -110,7 +127,6 @@ export default function Home() {
     }
   };
 
-  // NUEVA FUNCIÓN: Selecciona la rama y sube al formulario
   const handleSeleccionarRama = (titulo: string) => {
     setFormData(prev => ({ ...prev, rama: titulo }));
     scrollToSection(null, 'inicio');
@@ -138,12 +154,16 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-slate-200 z-50 shadow-sm transition-all duration-300">
         <div className="max-w-6xl mx-auto px-4 md:px-8 h-full flex justify-between items-center relative">
           
+          {/* LOGO ACTUALIZADO */}
           <a href="#inicio" onClick={(e) => scrollToSection(e, 'inicio')} className="flex items-center gap-3 select-none cursor-pointer group">
             <div className="bg-blue-950 text-white px-2 py-1 transition-transform group-hover:scale-105">
               <span className="text-2xl font-bold tracking-tighter leading-none">NLR</span>
             </div>
             <div className="flex flex-col border-l border-slate-300 pl-3">
-              <span className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase leading-none">
+              <span className="text-[11px] font-black tracking-tight text-blue-950 uppercase leading-none">
+                Novelli & Lubrano
+              </span>
+              <span className="text-[9px] font-bold tracking-[0.15em] text-slate-500 uppercase leading-none mt-1">
                 Estudio Jurídico
               </span>
             </div>
@@ -346,9 +366,19 @@ export default function Home() {
             {teamData.map((member, index) => (
               <FadeIn key={index} delay={index * 150}>
                 <div className="bg-white p-8 rounded-sm shadow-sm border border-slate-200 flex flex-col items-center text-center hover:border-blue-200 transition-colors h-full">
-                  <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6 text-slate-400">
-                    <User size={40} />
+                  
+                  <div className="w-24 h-24 mb-6 rounded-full overflow-hidden border-2 border-slate-100 shadow-sm bg-slate-100">
+                    <img 
+                      src={member.image} 
+                      alt={member.name} 
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: (member as any).position || 'center' }}
+                      onError={(e) => {
+                        e.currentTarget.src = "https://ui-avatars.com/api/?name=" + member.name;
+                      }}
+                    />
                   </div>
+
                   <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
                   <p className="text-blue-900 font-bold text-xs uppercase tracking-wider mb-4">{member.role}</p>
                   <div className="space-y-1">
@@ -363,33 +393,30 @@ export default function Home() {
         </div>
       </section>
 
-    {/* --- FOOTER CON LOGO OFICIAL Y CRÉDITOS ABAJO --- */}
+      {/* --- FOOTER ACTUALIZADO --- */}
       <footer className="bg-slate-950 text-slate-400 py-16 px-4 text-center md:text-left">
         <div className="max-w-6xl mx-auto">
-          
-          {/* GRILLA DE 3 COLUMNAS SUPERIOR */}
           <div className="grid md:grid-cols-3 gap-12 text-sm">
             
-            {/* COLUMNA 1: LOGO Y DESCRIPCIÓN */}
+            {/* LOGO EN FOOTER ACTUALIZADO */}
             <div className="flex flex-col items-center md:items-start space-y-4">
               <a href="#inicio" onClick={(e) => scrollToSection(e, 'inicio')} className="flex items-center gap-3 select-none cursor-pointer group">
                 <div className="text-white">
                   <span className="text-3xl font-bold tracking-tighter leading-none">NLR</span>
                 </div>
-                <div className="h-8 w-px bg-slate-700"></div>
+                <div className="h-10 w-px bg-slate-700"></div>
                 <div className="flex flex-col text-left">
-                  <span className="text-sm font-bold tracking-[0.1em] text-white uppercase leading-tight">
-                    Estudio Jurídico
+                  <span className="text-sm font-bold tracking-tight text-white uppercase leading-none">
+                    Novelli & Lubrano
                   </span>
-                  <span className="text-xs text-cyan-400 font-medium leading-tight mt-0.5">
-                    Tu tranquilidad. Nuestro compromiso.
+                  <span className="text-[10px] font-bold tracking-[0.15em] text-slate-400 uppercase leading-none mt-1.5">
+                    Estudio Jurídico
                   </span>
                 </div>
               </a>
-              <p className="leading-relaxed max-w-xs mx-auto md:mx-0">Defensa legal integral con estrategia, compromiso y resultados. Sede en Buenos Aires, Argentina.</p>
+              <p className="leading-relaxed max-w-xs mx-auto md:mx-0">Defensa legal integral con estrategia y compromiso. Sede en Buenos Aires, Argentina.</p>
             </div>
 
-            {/* COLUMNA 2: CONTACTO */}
             <div className="flex flex-col items-center md:items-start">
               <h4 className="text-white font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
                 <MessageCircle size={16} className="text-cyan-400" /> Contacto
@@ -410,7 +437,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* COLUMNA 3: HORARIOS (Sin los créditos, solo horarios) */}
             <div className="flex flex-col items-center md:items-start">
               <h4 className="text-white font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
                 <CheckCircle2 size={16} className="text-cyan-400" /> Atención
@@ -418,20 +444,16 @@ export default function Home() {
               <p className="mb-4">Lunes a Viernes: 8:00 a 20.00hs</p>
               <p className="text-slate-500 text-xs">Atención con turno previo.</p>
             </div>
-
           </div>
 
-          {/* --- BARRA INFERIOR DE CRÉDITOS (SEPARADA) --- */}
           <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col items-center justify-center text-xs text-slate-600 space-y-2">
             <p>© 2026 NLR Estudio Jurídico. Todos los derechos reservados.</p>
             <p>
               Hecho por <a href="https://www.instagram.com/codela.estudio/" target="_blank" rel="noreferrer" className="text-blue-500 underline hover:text-blue-400 transition-colors font-medium">Codela</a>
             </p>
           </div>
-
         </div>
       </footer>
-
     </main>
   );
 }
