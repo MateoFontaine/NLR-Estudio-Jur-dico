@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { CheckCircle2, MessageCircle, Mail, Menu, Phone, Scale, Shield, Briefcase, Gavel, Users, FileText, Monitor, X, User, MapPin } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Mail, Menu, Phone, Scale, Shield, Briefcase, Gavel,ShoppingBag, Users, FileText, Monitor, X, User, MapPin } from 'lucide-react';
 
 // --- COMPONENTE DE ANIMACIÓN (Fade In Up) ---
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => {
@@ -74,7 +74,7 @@ export default function Home() {
     },
     { 
       title: "Defensa del Consumidor", 
-      icon: <Shield size={24} />, 
+      icon: <ShoppingBag size={24} />, 
       desc: "Reclamos ante bancos, financieras y empresas por cargos indebidos, productos defectuosos o mala atención. Exigimos reparaciones, reintegros y cumplimiento de garantías." 
     },
     { 
