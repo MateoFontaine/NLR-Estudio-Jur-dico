@@ -50,8 +50,8 @@ export const metadata: Metadata = {
 
   // Iconos
   icons: {
-    icon: '/icon.svg',
-    apple: '/icon.svg', // Para cuando guardan el sitio en el inicio de un iPhone
+    icon: '/apple-icon.png',
+    apple: '/apple-icon.png', // Para cuando guardan el sitio en el inicio de un iPhone
   },
 
   // Robots le dice a Google que indexe todo el sitio
