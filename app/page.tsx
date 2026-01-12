@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { CheckCircle2, MessageCircle, Mail, Menu, Phone, Scale, Shield, Briefcase, Gavel,ShoppingBag, Users, FileText, Monitor, X, User, MapPin } from 'lucide-react';
+// Agregué 'Check', 'Loader2' y 'AlertCircle' para los estados del botón
+import { CheckCircle2, MessageCircle, Mail, Menu, Phone, Scale, Shield, Briefcase, Gavel, ShoppingBag, Users, FileText, Monitor, X, User, MapPin, Check, Loader2, AlertCircle } from 'lucide-react';
 
 // --- COMPONENTE DE ANIMACIÓN (Fade In Up) ---
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => {
@@ -50,6 +51,10 @@ export default function Home() {
   });
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  // CAMBIO: Reemplazamos isSubmitting por un estado más completo
+  // 'idle' = quieto, 'loading' = enviando, 'success' = enviado, 'error' = falló
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const ramasData = [
     { 
@@ -136,14 +141,92 @@ export default function Home() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     if (formData.metodoContacto === 'whatsapp') {
       const telefonoEstudio = "5491112345678"; 
       const mensaje = `Hola, mi nombre es *${formData.nombre}*. Quisiera consultar por un tema de *${formData.rama}*.%0A%0AConsulta: ${formData.consulta}%0A%0A(Prefiero contacto por WhatsApp)`;
       window.open(`https://wa.me/${telefonoEstudio}?text=${mensaje}`, '_blank');
-    } else {
-      alert("Aquí se enviaría el correo.");
+      return;
+    } 
+
+    // Lógica nueva de Email con FEEDBACK VISUAL
+    setSubmitStatus('loading'); // 1. Cambiamos a estado cargando
+
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        // 2. ÉXITO: Cambiamos estado a success y limpiamos
+        setSubmitStatus('success');
+        setFormData({ ...formData, consulta: '', nombre: '', telefono: '' });
+        
+        // 3. Volvemos al estado normal después de 3 segundos
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 3000);
+
+      } else {
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error(error);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    }
+  };
+
+  // Función auxiliar para calcular el color del botón según el estado
+  const getButtonClass = () => {
+    if (formData.metodoContacto === 'whatsapp') return 'bg-green-700 hover:bg-green-800';
+    
+    switch (submitStatus) {
+      case 'loading': return 'bg-blue-900 cursor-wait';
+      case 'success': return 'bg-green-600 hover:bg-green-700'; // Se pone verde al enviar
+      case 'error': return 'bg-red-600 hover:bg-red-700'; // Se pone rojo si falla
+      default: return 'bg-blue-950 hover:bg-blue-900'; // Azul normal
+    }
+  };
+
+  // Función auxiliar para el contenido del botón
+  const renderButtonContent = () => {
+    if (formData.metodoContacto === 'whatsapp') {
+      return (
+        <span className="flex items-center justify-center gap-2">
+          Contactar Abogado <MessageCircle size={16} />
+        </span>
+      );
+    }
+
+    switch (submitStatus) {
+      case 'loading':
+        return (
+          <span className="flex items-center justify-center gap-2">
+            <Loader2 size={16} className="animate-spin" /> Enviando...
+          </span>
+        );
+      case 'success':
+        return (
+          <span className="flex items-center justify-center gap-2">
+            <Check size={16} /> ¡Enviado con éxito!
+          </span>
+        );
+      case 'error':
+        return (
+          <span className="flex items-center justify-center gap-2">
+            <AlertCircle size={16} /> Error al enviar
+          </span>
+        );
+      default:
+        return 'Enviar Consulta';
     }
   };
 
@@ -154,7 +237,6 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b border-slate-200 z-50 shadow-sm transition-all duration-300">
         <div className="max-w-6xl mx-auto px-4 md:px-8 h-full flex justify-between items-center relative">
           
-          {/* LOGO ACTUALIZADO */}
           <a href="#inicio" onClick={(e) => scrollToSection(e, 'inicio')} className="flex items-center gap-3 select-none cursor-pointer group">
             <div className="bg-blue-950 text-white px-2 py-1 transition-transform group-hover:scale-105">
               <span className="text-2xl font-bold tracking-tighter leading-none">NLR</span>
@@ -303,8 +385,13 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <button type="submit" className={`w-full py-3 mt-1 rounded-sm font-bold text-white uppercase tracking-wider text-xs shadow-sm transition hover:brightness-110 ${formData.metodoContacto === 'whatsapp' ? 'bg-green-700' : 'bg-blue-950'}`}>
-                    {formData.metodoContacto === 'whatsapp' ? 'Contactar Abogado' : 'Enviar Consulta'}
+                  {/* BOTÓN CON ESTADOS (MODIFICADO) */}
+                  <button 
+                    type="submit" 
+                    disabled={submitStatus === 'loading' || submitStatus === 'success'}
+                    className={`w-full py-3 mt-1 rounded-sm font-bold text-white uppercase tracking-wider text-xs shadow-sm transition-all duration-300 disabled:opacity-80 disabled:cursor-not-allowed ${getButtonClass()}`}
+                  >
+                    {renderButtonContent()}
                   </button>
                 </form>
               </div>
@@ -432,7 +519,7 @@ export default function Home() {
                 </p>
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <Mail size={16} className="text-slate-600 shrink-0" /> 
-                  <span>Email: contacto@estudionlr.com.ar</span>
+                  <span>Email: contacto@nlrestudiojuridico.com.ar</span>
                 </p>
               </div>
             </div>
