@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 // Agregué 'Check', 'Loader2' y 'AlertCircle' para los estados del botón
-import { CheckCircle2, MessageCircle, Mail, Menu, Phone, Scale, Shield, Briefcase, Gavel, ShoppingBag, Users, FileText, Monitor, X, User, MapPin, Check, Loader2, AlertCircle } from 'lucide-react';
+import { CheckCircle2, MessageCircle, Mail, Menu, Phone, Scale, PersonStanding, Shield, Briefcase, Gavel, ShoppingBag, Users, FileText, Monitor, X, User, MapPin, Check, Loader2, AlertCircle } from 'lucide-react';
 
 // --- COMPONENTE DE ANIMACIÓN (Fade In Up) ---
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => {
@@ -91,6 +91,11 @@ export default function Home() {
       title: "Marcas y Patentes", 
       icon: <Shield size={24} />, 
       desc: "Registro de marcas y logos, derechos de autor, software y patentes. Brindamos una estrategia integral para proteger tu propiedad intelectual y evitar copias o conflictos." 
+    },
+    { 
+      title: "Familia", 
+      icon: <PersonStanding size={24} />, 
+      desc: "Soluciones legales en Derecho de Familia con enfoque en la protección de los más vulnerables. Expertos en divorcios, cuota alimentaria, cuidado personal y régimen de comunicación, orientados a resultados justos y al bienestar familiar." 
     },
   ];
 
