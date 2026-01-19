@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
   // Iconos
   icons: {
-    icon: '/apple-icon.png',
+    icon: '/NLR.png',
     apple: '/apple-icon.png', // Para cuando guardan el sitio en el inicio de un iPhone
   },
 
