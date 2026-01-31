@@ -302,7 +302,7 @@ export default function Home() {
 
       {/* --- HERO SECTION --- */}
       <section id="inicio" className="scroll-mt-16 relative w-full flex items-center justify-center px-4 pt-28 pb-20 md:pt-32 md:min-h-screen bg-slate-100">
-        <img src="/fondo2.jpeg" alt="Fondo" className="absolute inset-0 w-full h-full object-cover z-0 grayscale opacity-40" />
+        <img src="/Fondo2.jpeg" alt="Fondo" className="absolute inset-0 w-full h-full object-cover z-0 grayscale opacity-40" />
         <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-50/90 via-slate-50/70 to-slate-100/40"></div>
 
         <div className="max-w-5xl mx-auto w-full grid lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10">
