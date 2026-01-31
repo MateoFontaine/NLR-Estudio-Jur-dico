@@ -150,11 +150,12 @@ export default function Home() {
     e.preventDefault();
     
     if (formData.metodoContacto === 'whatsapp') {
-      const telefonoEstudio = "5491112345678"; 
+      const telefonoEstudio = "5491155715280"; 
       const mensaje = `Hola, mi nombre es *${formData.nombre}*. Quisiera consultar por un tema de *${formData.rama}*.%0A%0AConsulta: ${formData.consulta}%0A%0A(Prefiero contacto por WhatsApp)`;
       window.open(`https://wa.me/${telefonoEstudio}?text=${mensaje}`, '_blank');
       return;
     } 
+
 
     // Lógica nueva de Email con FEEDBACK VISUAL
     setSubmitStatus('loading'); // 1. Cambiamos a estado cargando
@@ -301,7 +302,7 @@ export default function Home() {
 
       {/* --- HERO SECTION --- */}
       <section id="inicio" className="scroll-mt-16 relative w-full flex items-center justify-center px-4 pt-28 pb-20 md:pt-32 md:min-h-screen bg-slate-100">
-        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop" alt="Fondo" className="absolute inset-0 w-full h-full object-cover z-0 grayscale opacity-40" />
+        <img src="/fondo2.jpeg" alt="Fondo" className="absolute inset-0 w-full h-full object-cover z-0 grayscale opacity-40" />
         <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-50/90 via-slate-50/70 to-slate-100/40"></div>
 
         <div className="max-w-5xl mx-auto w-full grid lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10">
@@ -520,7 +521,7 @@ export default function Home() {
                 </p>
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <Phone size={16} className="text-slate-600 shrink-0" /> 
-                  <span>Tel: 11 1234-5678</span>
+                  <span>Tel: +54 9 11 5571-5280</span>
                 </p>
                 <p className="flex items-center justify-center md:justify-start gap-2">
                   <Mail size={16} className="text-slate-600 shrink-0" /> 
